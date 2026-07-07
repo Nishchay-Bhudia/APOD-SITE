@@ -1,185 +1,132 @@
-/* Core Page Variables & Reset */
-:root {
-  --bg-dark: #0a0b10;
-  --accent-cyan: #00f2ff;
-  --text-light: #f0f4f8;
-  --panel-bg: rgba(255, 255, 255, 0.03);
-  --border-light: rgba(255, 255, 255, 0.1);
-  --radius-lg: 16px;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* --- Global Resets & Layout Setup --- */
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-light);
+  margin: 0;
   min-height: 100vh;
   position: relative;
+  background-color: #100224;
+  color: white;
+  font-family: 'Black Ops One', sans-serif;
+  line-height: 1.6;
+  padding: 2rem;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem 2rem;
-  overflow-x: hidden;
 }
 
-/* --- LEFT SIDE ZIGZAG DECORATION --- */
+/* --- Left Side Decorative Zig-Zag --- */
 body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   width: 50px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--accent-cyan), #7000ff);
+  height: 100vh;
+  background: linear-gradient(135deg, #00f0ff, #7f00ff);
   z-index: -1;
-  clip-path: polygon(0 0, 100% 0, 60% 5%, 100% 10%, 60% 15%, 100% 20%, 60% 25%, 100% 30%, 60% 35%, 100% 40%, 60% 45%, 100% 50%, 60% 55%, 100% 60%, 60% 65%, 100% 70%, 60% 75%, 100% 80%, 60% 85%, 100% 90%, 60% 95%, 100% 100%, 0 100%);
+  clip-path: polygon(
+    0% 0%, 100% 0%, 65% 5%, 100% 10%, 65% 15%, 100% 20%, 
+    65% 25%, 100% 30%, 65% 35%, 100% 40%, 65% 45%, 100% 50%, 
+    65% 55%, 100% 60%, 65% 65%, 100% 70%, 65% 75%, 100% 80%, 
+    65% 85%, 100% 90%, 65% 95%, 100% 100%, 0% 100%
+  );
 }
 
-/* --- RIGHT SIDE ZIGZAG DECORATION --- */
+/* --- Right Side Decorative Zig-Zag --- */
 body::after {
   content: '';
   position: fixed;
   top: 0;
   right: 0;
   width: 50px;
-  height: 100%;
-  background: linear-gradient(to bottom, #7000ff, var(--accent-cyan));
+  height: 100vh;
+  background: linear-gradient(135deg, #7f00ff, #ff007f);
   z-index: -1;
-  clip-path: polygon(40% 0, 100% 0, 100% 100%, 40% 100%, 0% 95%, 40% 90%, 0% 85%, 40% 80%, 0% 75%, 40% 70%, 0% 65%, 40% 60%, 0% 55%, 40% 50%, 0% 45%, 40% 40%, 0% 35%, 40% 30%, 0% 25%, 40% 20%, 0% 15%, 40% 10%, 0% 5%);
+  clip-path: polygon(
+    100% 0%, 0% 0%, 35% 5%, 0% 10%, 35% 15%, 0% 20%, 
+    35% 25%, 0% 30%, 35% 35%, 0% 40%, 35% 45%, 0% 50%, 
+    35% 55%, 0% 60%, 35% 65%, 0% 70%, 35% 75%, 0% 80%, 
+    35% 85%, 0% 90%, 35% 95%, 0% 100%, 100% 100%
+  );
 }
 
-/* Base Wrapper Container */
+/* --- Core Application Container --- */
 #app {
   width: 100%;
-  max-width: 850px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Main Display Card */
-.content-container {
-  background: var(--panel-bg);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  max-width: 800px;
+  margin: 0 auto;
   text-align: center;
-  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2.5rem;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Typography Elements */
-.apod-title {
+/* --- Typography Elements --- */
+h1 {
   font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
   font-size: 2.5rem;
-  letter-spacing: 1px;
-  line-height: 1.2;
+  font-weight: 900;
+  margin-top: 0;
   margin-bottom: 1.5rem;
-  color: #ffffff;
-  text-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+  color: #00f0ff;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  letter-spacing: 1px;
 }
 
-.apod-explanation {
-  font-family: 'Black Ops One', sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  letter-spacing: 0.7px;
-  color: #cbd5e1;
+p {
+  font-size: 1.05rem;
   text-align: justify;
+  color: #e2e8f0;
   margin-top: 1.5rem;
 }
 
-/* Media Box Rules */
-.media-container {
-  width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border-light);
-  background: #000000;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-.apod-media {
-  width: 100%;
-  height: auto;
-  max-height: 550px;
-  object-fit: cover;
-  display: block;
-}
-
-/* Responsive 16:9 Aspect Box for Iframes (YouTube) */
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  width: 100%;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* Utility Loading / Fallback Structures */
-.loader-container, .error-container {
+p.loading {
   font-family: 'Orbitron', sans-serif;
-  padding: 4rem 2rem;
   text-align: center;
+  font-size: 1.5rem;
+  color: #7f00ff;
+  text-transform: uppercase;
 }
 
-.loading-text {
-  color: var(--accent-cyan);
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  animation: cosmic-pulse 1.8s infinite ease-in-out;
+p.error {
+  text-align: center;
+  color: #ff007f;
 }
 
-.error-card {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  color: #f87171;
+/* --- Media Elements Setup (Responsive) --- */
+img, video, iframe {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
-@keyframes cosmic-pulse {
-  0%, 100% { opacity: 0.4; transform: scale(0.98); }
-  50% { opacity: 1; transform: scale(1); }
+iframe {
+  aspect-ratio: 16 / 9;
 }
 
-/* --- MOBILE RESPONSIVE MEDIA QUERY --- */
+/* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
   body {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
   }
   
-  /* Remove side structural strips on narrow layouts */
   body::before,
   body::after {
-    display: none;
+    display: none; /* Safely drops background side strips on small screens */
   }
 
-  .content-container {
-    padding: 1.5rem 1rem;
-  }
-
-  .apod-title {
-    font-size: 1.65rem;
+  h1 {
+    font-size: 1.8rem;
   }
   
-  .apod-explanation {
-    font-size: 0.95rem;
-    text-align: left;
+  #app {
+    padding: 1.5rem;
   }
 }
