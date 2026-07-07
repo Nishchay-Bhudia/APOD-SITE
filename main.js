@@ -1,6 +1,6 @@
 // NASA API KEY
 // Replace this with your actual NASA API key
-const API_KEY = "YOUR_NASA_API_KEY";
+const API_KEY = mU9zbe5WjHtdWsHJzzlChacuCRm8WqHQyDUMSbr6 ;
 
 
 const app = document.querySelector("#app");
