@@ -1,32 +1,48 @@
-// NASA API KEY
-// Replace this with your actual NASA API key
-const API_KEY = mU9zbe5WjHtdWsHJzzlChacuCRm8WqHQyDUMSbr6 ;
 
 
-const app = document.querySelector("#app");
+
+const API_KEY = "mU9zbe5WjHtdWsHJzzlChacuCRm8WqHQyDUMSbr6";
 
 
-// Loading screen
+const app = document.getElementById("app");
+
+
+
 app.innerHTML = `
-    <p class="loading">
-        Loading NASA image...
-    </p>
+
+<h1>
+🚀 Loading NASA Data...
+</h1>
+
 `;
 
 
-// Fetch APOD data
 
-fetch(
-    `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`
-)
+const url =
+`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
+
+
+
+fetch(url)
+
 
 .then(response => {
 
-    if (!response.ok) {
-        throw new Error("NASA API request failed");
+
+    console.log("NASA STATUS:", response.status);
+
+
+    if(!response.ok){
+
+        throw new Error(
+            "NASA API Error: " + response.status
+        );
+
     }
 
+
     return response.json();
+
 
 })
 
@@ -34,57 +50,74 @@ fetch(
 .then(data => {
 
 
-    let media;
+    console.log(data);
 
 
-    // Image
 
-    if (data.media_type === "image") {
+    let mediaHTML = "";
 
 
-        media = `
-            <img 
-                src="${data.hdurl || data.url}"
-                alt="${data.title}"
-            >
+
+    if(data.media_type === "image"){
+
+
+        mediaHTML = `
+
+        <img 
+        src="${data.hdurl || data.url}"
+        alt="${data.title}"
+        >
+
         `;
 
 
     }
 
 
-    // Youtube video
 
-    else if (
-        data.media_type === "video" &&
-        data.url.includes("youtube")
-    ) {
+    else if(data.media_type === "video"){
 
 
-        let videoID = data.url.split("v=")[1];
+        if(data.url.includes("youtube")){
 
 
-        media = `
+            const videoID =
+            data.url.split("v=")[1];
+
+
+            mediaHTML = `
+
             <iframe
-                src="https://www.youtube.com/embed/${videoID}"
-                allowfullscreen>
+
+            src="https://www.youtube.com/embed/${videoID}"
+
+            allowfullscreen>
+
             </iframe>
-        `;
 
 
-    }
+            `;
 
 
-    // Other videos
-
-    else {
+        }
 
 
-        media = `
+        else {
+
+
+            mediaHTML = `
+
             <video controls>
-                <source src="${data.url}">
+
+            <source src="${data.url}">
+
             </video>
-        `;
+
+
+            `;
+
+
+        }
 
 
     }
@@ -93,17 +126,33 @@ fetch(
 
     app.innerHTML = `
 
-        <h1>
-            ${data.title}
-        </h1>
+
+    <h1>
+    ${data.title}
+    </h1>
 
 
-        ${media}
+
+    <div class="date">
+
+    📅 ${data.date}
+
+    </div>
 
 
-        <p>
-            ${data.explanation}
-        </p>
+
+    ${mediaHTML}
+
+
+
+
+    <p>
+
+    ${data.explanation}
+
+    </p>
+
+
 
     `;
 
@@ -115,13 +164,37 @@ fetch(
 .catch(error => {
 
 
+    console.error(error);
+
+
+
     app.innerHTML = `
 
-        <p class="error">
-            Error: ${error.message}
-        </p>
+
+    <h1 class="error">
+
+    ❌ Something went wrong
+
+    </h1>
+
+
+    <p>
+
+    ${error.message}
+
+    </p>
+
+
+
+    <p>
+
+    Check your NASA API key.
+
+    </p>
+
 
     `;
+
 
 
 });
