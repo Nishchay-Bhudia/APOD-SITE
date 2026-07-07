@@ -1,132 +1,15 @@
-/* --- Global Resets & Layout Setup --- */
-body {
-  margin: 0;
-  min-height: 100vh;
-  position: relative;
-  background-color: #100224;
-  color: white;
-  font-family: 'Black Ops One', sans-serif;
-  line-height: 1.6;
-  padding: 2rem;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* --- Left Side Decorative Zig-Zag --- */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 100vh;
-  background: linear-gradient(135deg, #00f0ff, #7f00ff);
-  z-index: -1;
-  clip-path: polygon(
-    0% 0%, 100% 0%, 65% 5%, 100% 10%, 65% 15%, 100% 20%, 
-    65% 25%, 100% 30%, 65% 35%, 100% 40%, 65% 45%, 100% 50%, 
-    65% 55%, 100% 60%, 65% 65%, 100% 70%, 65% 75%, 100% 80%, 
-    65% 85%, 100% 90%, 65% 95%, 100% 100%, 0% 100%
-  );
-}
-
-/* --- Right Side Decorative Zig-Zag --- */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 100vh;
-  background: linear-gradient(135deg, #7f00ff, #ff007f);
-  z-index: -1;
-  clip-path: polygon(
-    100% 0%, 0% 0%, 35% 5%, 0% 10%, 35% 15%, 0% 20%, 
-    35% 25%, 0% 30%, 35% 35%, 0% 40%, 35% 45%, 0% 50%, 
-    35% 55%, 0% 60%, 35% 65%, 0% 70%, 35% 75%, 0% 80%, 
-    35% 85%, 0% 90%, 35% 95%, 0% 100%, 100% 100%
-  );
-}
-
-/* --- Core Application Container --- */
-#app {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2.5rem;
-  border-radius: 16px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-}
-
-/* --- Typography Elements --- */
-h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  color: #00f0ff;
-  text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-  letter-spacing: 1px;
-}
-
-p {
-  font-size: 1.05rem;
-  text-align: justify;
-  color: #e2e8f0;
-  margin-top: 1.5rem;
-}
-
-p.loading {
-  font-family: 'Orbitron', sans-serif;
-  text-align: center;
-  font-size: 1.5rem;
-  color: #7f00ff;
-  text-transform: uppercase;
-}
-
-p.error {
-  text-align: center;
-  color: #ff007f;
-}
-
-/* --- Media Elements Setup (Responsive) --- */
-img, video, iframe {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-}
-
+img,
+video,
 iframe {
-  aspect-ratio: 16 / 9;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,.5);
 }
 
-/* --- Mobile Responsiveness --- */
-@media (max-width: 600px) {
-  body {
-    padding: 1rem;
-  }
-  
-  body::before,
-  body::after {
-    display: none; /* Safely drops background side strips on small screens */
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-  
-  #app {
-    padding: 1.5rem;
-  }
+iframe{
+    aspect-ratio:16/9;
 }
