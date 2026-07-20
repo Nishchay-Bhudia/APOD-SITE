@@ -71,15 +71,14 @@ If the API returns a video, the website changes the display to support video con
 
 ## Design
 
-The website was designed with a futuristic space theme.
+The website is styled like a dark astronomy journal rather than a typical space-themed dashboard.
 
 The design includes:
 
-- A dark background inspired by space
-- Custom Google Fonts
-- Neon colour accents
-- A glass-style content box
-- Decorative side designs using CSS
+- A near-black background with a single warm accent colour
+- A serif display font for titles, monospace for the date/label
+- A two-column layout for the image and explanation on larger screens
+- Hairline borders instead of glow/blur effects
 - Responsive layouts for different screen sizes
 
 The goal was to create a design that matches the theme of astronomy while keeping the information easy to read.

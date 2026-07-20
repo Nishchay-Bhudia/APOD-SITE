@@ -7,11 +7,26 @@ const API_KEY = "mU9zbe5WjHtdWsHJzzlChacuCRm8WqHQyDUMSbr6";
 const app = document.getElementById("app");
 
 
+function formatDate(dateStr) {
+
+    const d = new Date(dateStr + "T00:00:00");
+
+    return d.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+
+}
+
+
 
 app.innerHTML = `
 
+<div class="eyebrow">Astronomy Picture of the Day</div>
+
 <h1>
-🚀 Loading NASA Data...
+Loading today's picture...
 </h1>
 
 `;
@@ -126,33 +141,27 @@ fetch(url)
 
     app.innerHTML = `
 
+    <div class="eyebrow">Astronomy Picture of the Day</div>
+
+    <div class="date">
+    ${formatDate(data.date)}
+    </div>
 
     <h1>
     ${data.title}
     </h1>
 
+    <div class="layout">
 
+        <div class="media">
+        ${mediaHTML}
+        </div>
 
-    <div class="date">
-
-    📅 ${data.date}
+        <p>
+        ${data.explanation}
+        </p>
 
     </div>
-
-
-
-    ${mediaHTML}
-
-
-
-
-    <p>
-
-    ${data.explanation}
-
-    </p>
-
-
 
     `;
 
@@ -173,7 +182,7 @@ fetch(url)
 
     <h1 class="error">
 
-    ❌ Something went wrong
+    Something went wrong
 
     </h1>
 
